@@ -1,0 +1,10 @@
+<div class="bg-neutral-900 w-full h-[100vh] fixed pt-20">
+    <div class="flex flex-wrap gap-4 justify-center">
+        @for (item of contactData; track $index) {
+            <app-link-card [data]="item"></app-link-card>
+        }
+    </div>
+
+    <p class="flex text-xl text-white justify-center my-8">ФОРМА обратной связи</p>
+
+</div>
