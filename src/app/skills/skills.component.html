@@ -1,1 +1,47 @@
-<p>skills works!</p>
+<!-- <section
+class="initial"
+[style.transform]="'translate3d('+ -currentScrollIndex * 100 + 'dvw, 0, 0)'"
+>
+
+
+
+</section> -->
+
+<div class="initial relative">
+    <div
+        class="h-dvh w-dvw bg-red-800 test absolute"
+    ></div>
+    <div
+        [style.transform]= "currentScrollIndex >= 1 ? 'translate3d(' + -1 * 90 + 'dvw, 0, 0)' : ''"
+        class="h-dvh w-dvw bg-blue-600 test absolute left-[100dvw] z-10"
+    ></div>
+    <div
+        [style.transform]="
+        'translate3d(' + -currentScrollIndex * 90 + 'dvw, 0, 0)'
+        "
+        class="h-dvh w-dvw bg-pink-600 test absolute left-[200dvw] z-20"
+    ></div>
+</div>
+
+<!-- TODO: переделать на for -->
+<div
+    waIntersectionObserver
+    #block
+    waIntersectionThreshold="0.5"
+    class="screen"
+    (waIntersectionObservee)="onIntersection($event, 0)"
+></div>
+<div
+    waIntersectionObserver
+    #block
+    waIntersectionThreshold="0.5"
+    class="screen"
+    (waIntersectionObservee)="onIntersection($event, 1)"
+></div>
+<div
+    waIntersectionObserver
+    #block
+    waIntersectionThreshold="0.5"
+    class="screen"
+    (waIntersectionObservee)="onIntersection($event, 2)"
+></div>
