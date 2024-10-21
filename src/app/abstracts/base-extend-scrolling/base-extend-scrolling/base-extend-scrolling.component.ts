@@ -25,7 +25,6 @@ export abstract class BaseExtendScrollingComponent {
         this.scrollService.indexToScroll$.pipe(takeUntilDestroyed()).subscribe((index: number) => {
             this.scrollToIndex(index);
         });
-        
     }
 
     public onIntersection([{ isIntersecting }]: IntersectionObserverEntry[], index: number): void {

@@ -1,26 +1,18 @@
-<!-- <section
-class="initial"
-[style.transform]="'translate3d('+ -currentScrollIndex * 100 + 'dvw, 0, 0)'"
->
-
-
-
-</section> -->
-
-<div class="initial relative">
-    <div
-        class="h-dvh w-dvw bg-red-800 test absolute"
-    ></div>
-    <div
-        [style.transform]= "currentScrollIndex >= 1 ? 'translate3d(' + -1 * 90 + 'dvw, 0, 0)' : ''"
-        class="h-dvh w-dvw bg-blue-600 test absolute left-[100dvw] z-10"
-    ></div>
-    <div
+<div class="initial relative justify-center items-center bg-neutral-900">
+    <app-skills-card (scrollTo)="scrollToIndex($event)"
+    [index]="0"></app-skills-card>
+    <app-skills-card (scrollTo)="scrollToIndex($event)"
+        [index]="1"
         [style.transform]="
-        'translate3d(' + -currentScrollIndex * 90 + 'dvw, 0, 0)'
+        currentScrollIndex >= 1 ? 'translate3d(' + -1 * 90 + 'dvw, 0, 0)' : ''
         "
-        class="h-dvh w-dvw bg-pink-600 test absolute left-[200dvw] z-20"
-    ></div>
+        class="left-[100dvw] z-10"
+    ></app-skills-card>
+    <app-skills-card (scrollTo)="scrollToIndex($event)"
+    [index]="2"
+        [style.transform]="'translate3d(' + -currentScrollIndex * 90 + 'dvw, 0, 0)'"
+        class="left-[200dvw] z-20"
+    ></app-skills-card>
 </div>
 
 <!-- TODO: переделать на for -->
