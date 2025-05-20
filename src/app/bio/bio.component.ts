@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { ProfileCardComponent } from './profile-card/profile-card.component';
-import { EducationInfoComponent } from './education-info/education-and-info-card.component';
+import { EducationInfoComponent } from './education-info/education-info.component';
 import { WaIntersectionObserver } from '@ng-web-apis/intersection-observer';
 import { BaseExtendScrollingComponent } from '../abstracts/base-extend-scrolling/base-extend-scrolling/base-extend-scrolling.component';
 
-
+/**
+ * Компонент профиля.
+ */
 @Component({
-    selector: 'app-bio',
     standalone: true,
+    selector: 'app-bio',
     imports: [ProfileCardComponent, EducationInfoComponent, WaIntersectionObserver],
     templateUrl: './bio.component.html',
     styleUrl: './bio.component.less',
 })
-export class BioComponent extends BaseExtendScrollingComponent {
-
-}
+export class BioComponent extends BaseExtendScrollingComponent { }

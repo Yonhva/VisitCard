@@ -1,15 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
+/**
+ * Сервис прокрутки.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class ScrollService {
-    private readonly scroll: Subject<number> = new Subject<number>;
+    /**
+     * {@link Subject} Индекс прокрутки.
+     */
+    private readonly scrollIndex$: Subject<number> = new Subject<number>;
 
-    public readonly indexToScroll$: Observable<number> = this.scroll.asObservable();
+    /**
+     * {@link Observable} Прокрутки к индексу.
+     */
+    public readonly indexToScroll$: Observable<number> = this.scrollIndex$.asObservable();
 
+    /**
+     * Инициирует прокрутку к нулевому индексу.
+     */
     public scrollToStart(): void {
-        this.scroll.next(0);
+        this.scrollIndex$.next(0);
     }
 }

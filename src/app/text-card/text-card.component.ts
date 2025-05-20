@@ -1,16 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 import { ITextCardData } from './interfaces/i-text-card-data';
 import { TuiIcon } from '@taiga-ui/core';
 
+/**
+ * Компонент текстовой карточки.
+ */
 @Component({
-    selector: 'app-text-card',
     standalone: true,
+    selector: 'app-text-card',
     imports: [TuiIcon],
     templateUrl: './text-card.component.html',
     styleUrl: './text-card.component.less'
 })
 export class TextCardComponent {
-    
-    @Input()
-    data!: ITextCardData;
+    /**
+     * Данные текстовой карточки.
+     */
+    public data: InputSignal<ITextCardData> = input.required<ITextCardData>();
 }

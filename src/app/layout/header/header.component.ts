@@ -1,31 +1,69 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { TuiButton, TuiIcon } from '@taiga-ui/core';
+import { TuiDialog, TuiIcon } from '@taiga-ui/core';
 import { ScrollService } from '../../services/scroll.service';
 
+/**
+ * Компонент заголовка.
+ */
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [TuiButton, CommonModule, TuiIcon],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.less'
+    standalone: true,
+    selector: 'app-header',
+    imports: [CommonModule, TuiIcon, TuiDialog],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.less'
 })
 export class HeaderComponent {
-  public selectPage: 'home' |'bio' | 'skills' | 'examples' | 'contact-me' = 'home';
+    /**
+     * Выбранная страница.
+     */
+    protected selectPage: 'home' | 'bio' | 'skills' | 'examples' | 'contact-me' = 'home';
 
-  private readonly router = inject(Router);
+    /**
+     * Сервис навигации.
+     */
+    private readonly router: Router = inject(Router);
 
-  public scrollService = inject(ScrollService);
+    /**
+     * Сервис прокрутки.
+     */
+    private readonly scrollService: ScrollService = inject(ScrollService);
 
-  public changePage(newPage: 'home' | 'bio' | 'skills' | 'examples' | 'contact-me'): void {
-    this.selectPage = newPage;
+    /**
+     * Сервис обнаружения изменений.
+     */
+    private readonly cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-    const newRoute = newPage === 'home' ? '' : newPage;
-    void this.router.navigate([newRoute]);
-  }
+    /**
+     * Признак того, открыт ли диалог.
+     */
+    protected open: boolean = false;
 
-  public scrollToStart() {
-    this.scrollService.scrollToStart();
-  }
+    /**
+     * Изменяет страницу.
+     * 
+     * @param newPage Идентификатор новой страницы.
+     */
+    protected changePage(newPage: 'home' | 'bio' | 'skills' | 'examples' | 'contact-me'): void {
+        this.selectPage = newPage;
+
+        const newRoute = newPage === 'home' ? '' : newPage;
+        void this.router.navigate([newRoute]);
+    }
+
+    /**
+     * Прокручивает в начало.
+     */
+    protected scrollToStart(): void {
+        this.scrollService.scrollToStart();
+    }
+
+    /**
+     * Открывает диалог.
+     */
+    protected showDialog(): void {
+        this.open = true;
+        this.cdr.markForCheck();
+    }
 }

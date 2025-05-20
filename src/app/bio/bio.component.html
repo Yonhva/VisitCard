@@ -1,21 +1,9 @@
-<section
-class="initial"
-[style.transform]="'translate3d(0, ' + -currentScrollIndex * 100 + 'dvh, 0)'"
->
-
-    <app-profile-card (scrollDown)="scrollingDown()"></app-profile-card>
-    <app-education-and-info></app-education-and-info>
-
+<section class="initial h-full" [style.transform]="'translate3d(0, ' + -currentScrollIndex * 100 + 'dvh, 0)'">
+    <app-profile-card (scrollDown)="scrollingDown()" />
+    <app-education-info />
 </section>
 
-<!-- TODO: переделать на for -->
-<div waIntersectionObserver
-    #block
-    waIntersectionThreshold="0.5"
-    class="screen"
+<div waIntersectionObserver #block waIntersectionThreshold="0.5" class="screen"
     (waIntersectionObservee)="onIntersection($event, 0)"></div>
-<div waIntersectionObserver
-    #block
-    waIntersectionThreshold="0.5"
-    class="screen"
+<div waIntersectionObserver #block waIntersectionThreshold="0.5" class="screen"
     (waIntersectionObservee)="onIntersection($event, 1)"></div>

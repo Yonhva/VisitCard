@@ -1,19 +1,34 @@
-import { Component, output } from '@angular/core';
-import { EducationCardComponent } from "./education-card/education-card.component";
-import {TuiAccordion} from '@taiga-ui/kit';
+import { Component, inject } from '@angular/core';
+import { TuiAccordion, TuiCarousel, TuiPagination } from '@taiga-ui/kit';
 import { ITextCardData } from '../../text-card/interfaces/i-text-card-data';
 import { TextCardComponent } from "../../text-card/text-card.component";
+import { TUI_IS_MOBILE } from '@taiga-ui/cdk';
 
+/**
+ * Компонент, представляющий информацию об уровнях образования.
+ */
 @Component({
-    selector: 'app-education-and-info',
     standalone: true,
-    imports: [EducationCardComponent, TuiAccordion, TextCardComponent],
-    templateUrl: './education-and-info-card.component.html',
-    styleUrl: './education-and-info-card.component.less'
+    selector: 'app-education-info',
+    imports: [TuiAccordion, TextCardComponent, TuiCarousel, TuiPagination],
+    templateUrl: './education-info.component.html',
+    styleUrl: './education-info.component.less'
 })
 export class EducationInfoComponent {
+    /**
+     * Признак, что приложение открыто с мобильного устройства.
+     */
+    protected readonly isMobile: boolean = inject(TUI_IS_MOBILE);
 
-    public readonly educationData: ITextCardData[] = [
+    /**
+     * Индекс карусели.
+     */
+    protected index: number = 0;
+
+    /**
+     * Список данных об образовании.
+     */
+    protected readonly educationData: ITextCardData[] = [
         {
             title: 'ФГБОУ ВО "Шуйский филиал ИвГУ"',
             subtitle: 'Бакалавриат - 2019 - 2023',
@@ -40,11 +55,13 @@ export class EducationInfoComponent {
         },
     ];
 
-    public readonly locationData: ITextCardData = {
+    /**
+     * Данные о месте проживания.
+     */
+    protected readonly locationData: ITextCardData = {
         title: 'Место проживания',
         subtitle: 'г. Шуя',
         description: 'Ивановская область',
         icon: 'map-pin-house',
     }
-
 }

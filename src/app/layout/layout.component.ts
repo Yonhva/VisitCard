@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { RouterOutlet } from '@angular/router';
 
+/**
+ * Компонент разметки.
+ */
 @Component({
-  selector: 'app-layout',
   standalone: true,
+  selector: 'app-layout',
   imports: [HeaderComponent, RouterOutlet],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.less'
 })
-export class LayoutComponent {
-
-}
+export class LayoutComponent { }

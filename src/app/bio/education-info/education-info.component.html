@@ -1,0 +1,34 @@
+<div
+    class="bg-neutral-900 flex flex-col w-full h-[100dvh] pt-20 lg:px-12 px-0 md:gap-12 gap-4 md:justify-center justify-start items-center">
+    <p class="lg:text-4xl text-2xl font-bold">Образование:</p>
+    @if (isMobile) {
+    <tui-carousel [(index)]="index" class="min-w-96">
+        @for (item of educationData; track $index) {
+        <app-text-card *tuiItem [data]="item" class="w-fit self-center justify-self-center"></app-text-card>
+        }
+    </tui-carousel>
+    <tui-pagination size="s" [length]="educationData.length" [(index)]="index" />
+    }
+    @else {
+    <div class="flex flex-wrap gap-4 justify-center">
+        @for (item of educationData; track $index) {
+        <app-text-card [data]="item"></app-text-card>
+        }
+    </div>
+    }
+
+    <hr class="bg-neutral-800 w-full h-px rounded-lg" />
+
+    <div class="flex gap-6 items-center w-full px-4 md:px-0">
+        <app-text-card [data]="locationData" class="w-fit !hidden md:!block" />
+        <div class="rounded-lg w-full overflow-hidden ">
+            <a href="https://yandex.ru/maps/10691/shuya/?utm_medium=mapframe&utm_source=maps"
+                style="color:#eee;font-size:12px;position:absolute;top:0px;">Шуя</a>
+            <a href="https://yandex.ru/maps/geo/shuya/53010044/?ll=41.378235%2C56.855671&utm_medium=mapframe&utm_source=maps&z=13.58"
+                style="color:#eee;font-size:12px;position:absolute;top:14px;">Шуя — Яндекс Карты</a>
+            <iframe
+                src="https://yandex.ru/map-widget/v1/?ll=41.378235%2C56.855671&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzAxMDA0NBI50KDQvtGB0YHQuNGPLCDQmNCy0LDQvdC-0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwg0KjRg9GPIgoN2oklQhXpamNC&z=13.58"
+                frameborder="1" allowfullscreen="true" style="position:relative;" class="min-h-60 w-full"></iframe>
+        </div>
+    </div>
+</div>

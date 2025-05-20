@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
-import { ContactCardComponent } from "./contact-card/contact-card.component";
-import { TuiIcon } from '@taiga-ui/core';
 import { ILinkCardData } from '../link-card/interfaces/i-link-card-data';
 import { LinkCardComponent } from '../link-card/link-card.component';
 
+/**
+ * Компонент страницы с контактами.
+ */
 @Component({
-    selector: 'app-contact-me',
     standalone: true,
-    imports: [ContactCardComponent, TuiIcon, LinkCardComponent],
+    selector: 'app-contact-me',
+    imports: [LinkCardComponent],
     templateUrl: './contact-me.component.html',
-    styleUrl: './contact-me.component.less'
 })
 export class ContactMeComponent {
-
+    /**
+     * Список контактных данных.
+     */
     public readonly contactData: ILinkCardData[] = [
         {
             icon: '/telegram.svg',

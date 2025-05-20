@@ -1,40 +1,41 @@
 <div class="w-full fixed top-0 left-0 z-10">
-    <div class="w-full h-14 dark:bg-neutral-800 flex justify-between items-center">
+    <div class="w-full h-14 bg-neutral-800 flex justify-between items-center text-base">
         <div (click)="changePage('home')" class="flex items-center gap-2 cursor-pointer">
-            <img src="/mooshroom.svg" class="h-14"/>
-            <h1 class="dark:text-slate-300">blabla</h1>
+            <img src="/mooshroom.svg" class="h-14" />
+            <h1 class="text-slate-300">MyPage</h1>
         </div>
-        
-        <div>
-            <button
-            (click)="changePage('bio'); scrollToStart()"
-            [ngClass]="{'!bg-white !text-neutral-800': selectPage==='bio'}"
-            class="nav-button">
-                <tui-icon icon="@tui.badge-info" class="text-lg"></tui-icon>
-                bio
-            </button>
-            <button
-            (click)="changePage('skills')"
-            [ngClass]="{'!bg-white !text-neutral-800': selectPage==='skills'}"
-            class="nav-button">
-                <tui-icon icon="@tui.graduation-cap" class="text-lg"></tui-icon>
-                skills
-            </button>
-            <button
-            (click)="changePage('examples')"
-            [ngClass]="{'!bg-white !text-neutral-800': selectPage==='examples'}"
-            class="nav-button">
-                <tui-icon icon="@tui.image" class="text-lg"></tui-icon>
-                examples
-            </button>
-            <button
-            (click)="changePage('contact-me')"
-            [ngClass]="{'!bg-white !text-neutral-800': selectPage==='contact-me'}"
-            class="nav-button">
-                <tui-icon icon="@tui.globe" class="text-lg"></tui-icon>
-                contact me
-            </button>
+
+        <div class="hidden sm:flex">
+            <ng-container [ngTemplateOutlet]="menu" />
         </div>
+
+        <button class="nav-button" (click)="showDialog()">
+            <tui-icon icon="@tui.menu" class="sm:hidden" />
+        </button>
     </div>
 </div>
 
+<ng-template let-observer [(tuiDialog)]="open" [tuiDialogOptions]="{size: 'fullscreen'}">
+    <div [ngTemplateOutlet]="menu" [ngTemplateOutletContext]="{ $implicit: observer }">
+    </div>
+</ng-template>
+
+<ng-template #menu let-observer>
+    <div class="flex flex-col sm:flex-row gap-4">
+        <button (click)="changePage('bio'); scrollToStart(); observer.complete()"
+            [ngClass]="{'!bg-white !text-neutral-800': selectPage==='bio'}" class="nav-button">
+            <tui-icon icon="@tui.badge-info" class="text-lg" />
+            bio
+        </button>
+        <button (click)="changePage('skills'); observer.complete()"
+            [ngClass]="{'!bg-white !text-neutral-800': selectPage==='skills'}" class="nav-button">
+            <tui-icon icon="@tui.graduation-cap" class="text-lg" />
+            skills
+        </button>
+        <button (click)="changePage('contact-me'); observer.complete()"
+            [ngClass]="{'!bg-white !text-neutral-800': selectPage==='contact-me'}" class="nav-button">
+            <tui-icon icon="@tui.globe" class="text-lg" />
+            contact me
+        </button>
+    </div>
+</ng-template>

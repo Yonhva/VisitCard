@@ -1,16 +1,45 @@
-import { Component, Input, output } from '@angular/core';
-import { TuiIcon } from '@taiga-ui/core';
+import { Component, inject, input, InputSignal, output, OutputEmitterRef } from '@angular/core';
+import { TUI_IS_MOBILE } from '@taiga-ui/cdk';
 import { TuiChip } from '@taiga-ui/kit';
 
+/**
+ * Компонент карточки навыков.
+ */
 @Component({
-    selector: 'app-skills-card',
     standalone: true,
-    imports: [TuiChip, TuiIcon],
+    selector: 'app-skills-card',
+    imports: [TuiChip],
     templateUrl: './skills-card.component.html',
     styleUrl: './skills-card.component.less'
 })
 export class SkillsCardComponent {
-    public scrollTo = output<number>();
+    /**
+     * Сигнал о необходимости завершить прокрутку к определенному индексу.
+     */
+    public scrollToIndex: OutputEmitterRef<number> = output<number>();
 
-    @Input() index!:number;
+    /**
+     * Порядковый номер карточки.
+     */
+    public index: InputSignal<number> = input.required<number>();
+
+    /**
+     * Заголовок.
+     */
+    public readonly title: InputSignal<string> = input.required<string>();
+
+    /**
+     * Список навыков.
+     */
+    public readonly skills: InputSignal<string[]> = input.required<string[]>();
+
+    /**
+     * Изображение.
+     */
+    public readonly image: InputSignal<string> = input.required<string>();
+
+    /**
+     * Признак того, что приложение открыто с мобильного устройства.
+     */
+    protected readonly isMobile: boolean = inject(TUI_IS_MOBILE);
 }

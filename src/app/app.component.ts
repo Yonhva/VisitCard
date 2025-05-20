@@ -1,15 +1,14 @@
-import { TuiButton, TuiRoot } from "@taiga-ui/core";
+import { TuiRoot } from "@taiga-ui/core";
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { LayoutComponent } from "./layout/layout.component";
 
+/**
+ * Главный компонент приложения.
+ */
 @Component({
-  selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TuiRoot, LayoutComponent, TuiButton],
+  selector: 'app-root',
+  imports: [TuiRoot, LayoutComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.less'
 })
-export class AppComponent {
-  title = 'MyVisitCard';
-}
+export class AppComponent { }

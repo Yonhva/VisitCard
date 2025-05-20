@@ -1,16 +1,21 @@
-<div class="flex size-full items-center justify-start pt-14 pl-14">
-    <div class="card bg-neutral-600" (click)="scrollTo.emit(index)">
-        
-        <div class="flex size-full items-start">
-            <div class="flex justify-start w-fit h-full items-center">
-                <span class="vertical-text text-start text-5xl ml-6"
-                >WABADABALABADUMB</span>
+<div class="flex size-full items-center px-4 pt-14 justify-start">
+    <div class="card bg-neutral-700 lg:pl-6" (click)="scrollToIndex.emit(index())">
+        <div class="flex flex-col lg:flex-row size-full items-center lg:gap-8 gap-4 p-3">
+            <div class="flex justify-start items-center">
+                <span class="text-lg md:text-2xl vertical-text text-start lg:text-5xl">
+                    {{title()}}
+                </span>
             </div>
-            
-            <div class="flex gap-4 flex-wrap p-8">
-                <tui-chip size="m" iconStart="@tui.sparkles">
-                    kjhlkjlkjj
-                </tui-chip>
+
+            <div class="flex flex-col lg:gap-8 items-center gap-4">
+                <div class="flex gap-2 lg:gap-4 flex-wrap">
+                    @for (item of skills(); track $index) {
+                    <tui-chip [size]="isMobile ? 'xs' : 'm'" iconStart="@tui.sparkles">
+                        {{ item }}
+                    </tui-chip>
+                    }
+                </div>
+                <img [src]="image()" alt="картинковое" class="object-cover h-80 rounded-lg">
             </div>
         </div>
     </div>

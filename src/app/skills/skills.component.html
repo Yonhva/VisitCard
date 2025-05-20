@@ -1,39 +1,19 @@
 <div class="initial relative justify-center items-center bg-neutral-900">
-    <app-skills-card (scrollTo)="scrollToIndex($event)"
-    [index]="0"></app-skills-card>
-    <app-skills-card (scrollTo)="scrollToIndex($event)"
-        [index]="1"
-        [style.transform]="
+
+    <app-skills-card (scrollToIndex)=" scrollToIndex($event)" [index]="0" [title]="skillsCards[0].title"
+        [skills]="skillsCards[0].skills" [image]="skillsCards[0].image" />
+    <app-skills-card (scrollToIndex)="scrollToIndex($event)" [index]="1" [title]="skillsCards[1].title"
+        [skills]="skillsCards[1].skills" [image]="skillsCards[1].image" [style.transform]="
         currentScrollIndex >= 1 ? 'translate3d(' + -1 * 90 + 'dvw, 0, 0)' : ''
-        "
-        class="left-[100dvw] z-10"
-    ></app-skills-card>
-    <app-skills-card (scrollTo)="scrollToIndex($event)"
-    [index]="2"
-        [style.transform]="'translate3d(' + -currentScrollIndex * 90 + 'dvw, 0, 0)'"
-        class="left-[200dvw] z-20"
-    ></app-skills-card>
+        " class="left-[100dvw] z-10" />
+    <app-skills-card (scrollToIndex)="scrollToIndex($event)" [index]="2" [title]="skillsCards[2].title"
+        [skills]="skillsCards[2].skills" [image]="skillsCards[2].image"
+        [style.transform]="'translate3d(' + -currentScrollIndex * 90 + 'dvw, 0, 0)'" class="left-[200dvw] z-20" />
 </div>
 
-<!-- TODO: переделать на for -->
-<div
-    waIntersectionObserver
-    #block
-    waIntersectionThreshold="0.5"
-    class="screen"
-    (waIntersectionObservee)="onIntersection($event, 0)"
-></div>
-<div
-    waIntersectionObserver
-    #block
-    waIntersectionThreshold="0.5"
-    class="screen"
-    (waIntersectionObservee)="onIntersection($event, 1)"
-></div>
-<div
-    waIntersectionObserver
-    #block
-    waIntersectionThreshold="0.5"
-    class="screen"
-    (waIntersectionObservee)="onIntersection($event, 2)"
-></div>
+<div waIntersectionObserver #block waIntersectionThreshold="0.5" class="screen"
+    (waIntersectionObservee)="onIntersection($event, 0)"></div>
+<div waIntersectionObserver #block waIntersectionThreshold="0.5" class="screen"
+    (waIntersectionObservee)="onIntersection($event, 1)"></div>
+<div waIntersectionObserver #block waIntersectionThreshold="0.5" class="screen"
+    (waIntersectionObservee)="onIntersection($event, 2)"></div>
